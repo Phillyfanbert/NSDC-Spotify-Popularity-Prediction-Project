@@ -1,81 +1,44 @@
 # NSDC-Spotify-Popularity-Prediction-Project
-_NSDC UCLA — Machine Learning Music Trend Analysis_
-_Predicting the Success of Chromakopia Songs_
+# Tyler, the Creator: Chromakopia Performance Prediction
 
-**Project Overview**
-This project aims to predict the yearly streams of songs on Tyler, the Creator’s album Chromakopia using machine learning models trained on his past music data. By analyzing Spotify features (danceability, tempo, acousticness, etc.) alongside streaming history, we sought to identify which factors most strongly drive long-term popularity.
+## Project Overview
+Developed a predictive machine learning model to forecast the yearly streams of songs on Tyler, the Creator’s album *Chromakopia*. By analyzing historical streaming data and song features, this project identifies the key factors that drive commercial success for the artist’s discography and predicts the performance of his latest release.
 
-This work was completed as part of the National Student Data Corps (NSDC) UCLA Chapter.
+## Tech Stack
+* **Language:** Python
+* **Environment:** Google Colab
+* **Libraries:** Pandas, NumPy, Scikit-Learn, Seaborn, Matplotlib
+* **Techniques:** Regression Analysis, Principal Component Analysis (PCA), Hyperparameter Tuning (GridSearchCV), Mutual Information Regression
 
-**Datasets**
+## Key Features & Workflow
 
-We combined two main datasets for richer insights:
+### 1. Data Collection & Cleaning
+* **Sourcing:** Integrated a Kaggle dataset containing Spotify API streaming data with market performance metrics from Kworb.
+* **Cleaning:** Utilized Python to remove duplicate entries and filtered the dataset to focus specifically on tracks where Tyler, the Creator was the lead artist.
 
-Kaggle: Tyler, the Creator Dataset
+### 2. Data Preparation & Feature Engineering
+* **Feature Creation:** Derived a `featured_artists_count` column by converting artist entries into numerical counts, handling null values as zero.
+* **Normalization:** Converted track `duration` from minutes to seconds for standardized numerical analysis.
+* **Dimensionality Reduction:** Performed **Principal Component Analysis (PCA)** to streamline feature sets and used **Mutual Information Regression** to identify the most impactful predictors of stream volume.
 
-Contains Spotify audio features (danceability, key, tempo, etc.).
+### 3. Model Development & Optimization
+Benchmarked multiple regression architectures to predict yearly stream counts:
+* **Models Tested:** Linear Regression, Decision Trees, Random Forest, and **Gradient Boosting Regressor**.
+* **Optimization:** Employed **GridSearchCV** for hyperparameter tuning to minimize error rates and maximize predictive accuracy across all candidate models.
 
-Kworb Streaming Data
+### 4. Evaluation & Results
+* **Performance Metrics:** Evaluated models using **Mean Squared Error (MSE)** and **$R^2$ Score**.
+* **Winner:** The **Gradient Boosting Regressor** emerged as the top performer with a high accuracy of **$R^2 = 0.936$**.
+* **Feature Importance:** Visualized the specific song attributes that most heavily influence Tyler, the Creator’s streaming longevity.
 
-Includes total and daily Spotify streams for each track.
+## Summary of Findings
+* Successfully demonstrated that song performance can be predicted with over 93% accuracy using historical streaming patterns and engineered features.
+* The results provide insights into how collaboration counts and track characteristics influence the "shelf-life" of new releases in the streaming era.
 
-**Data Cleaning**
-Filtered for Tyler, the Creator’s songs only.
+## Repository Content
+* `Chromakopia_Prediction.ipynb`: Complete Python implementation and model training.
+* `Project Slideshow`: Visual presentation of the methodology and showcase results.
 
-Standardized duration (to seconds) and null values in features.
-
-Merged datasets into a single structured dataset.
-
-Created engineered features (examples below).
-
-**Feature Engineering**
-We designed new variables to better capture the “feel” of a track:
-
-Dance Factor = (Valence × Tempo × Instrumentalness) ÷ Speechiness
-
-Live Concert Energy = Liveness × Acousticness × (1 ÷ Speechiness)
-
-Production Complexity = Instrumentalness + (1 − Acousticness) + (Time Signature ÷ 4)
-
-Feel Good Index = Valence × Tempo × Duration
-
-These features improved model interpretability and performance.
-
-**Methods**
-We trained multiple regression models to predict yearly streams:
-
-Linear Regression — baseline linear trends.
-
-Decision Tree Regression — interpretable splits but prone to overfitting.
-
-Random Forest Regression — ensemble of trees to boost accuracy.
-
-Gradient Boosting Regression — sequential tree-building to minimize residuals.
-
-Feature selection was guided by Mutual Information Scores and importance analysis.
-
-**Results**
-| Model                        | MSE        | R²         |
-| ---------------------------- | ---------- | ---------- |
-| Linear Regression            | 0.2111     | 0.8829     |
-| Decision Tree                | 0.3294     | 0.8172     |
-| Random Forest                | 0.2172     | 0.8903     |
-| **Gradient Boosting (Best)** | **0.1459** | **0.9364** |
-
-Best model: Gradient Boosting Regression
-
-Most predictive feature: Daily Streams
-
-Predictions were then applied to the Chromakopia tracklist to forecast yearly streams.
-
-**Future Work**
-Expand dataset beyond Tyler, the Creator for generalizability.
-
-Explore deep learning models for non-linear feature interactions.
-
-Deploy a simple web app to input song features and predict streams.
-
-**Team**
-Project completed by NSDC at UCLA:
-Azadeh, Chloe, Colin, Jaiden, Kota, Philbert, Vidita, Michelle
+---
+*Developed as part of the National Student Data Corps (NSDC) Project (Oct 2024 - Dec 2024).*
 
