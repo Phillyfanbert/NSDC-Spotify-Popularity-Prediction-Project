@@ -1,5 +1,4 @@
 # NSDC-Spotify-Popularity-Prediction-Project
-# Tyler, the Creator: Chromakopia Performance Prediction
 
 ## Project Overview
 Developed a predictive machine learning model to forecast the yearly streams of songs on Tyler, the Creator’s album *Chromakopia*. By analyzing historical streaming data and song features, this project identifies the key factors that drive commercial success for the artist’s discography and predicts the performance of his latest release.
